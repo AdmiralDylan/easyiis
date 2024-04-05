@@ -12,6 +12,8 @@ app.use(cors())
 app.use('/sites', siteRouter);
 app.use('/tech', techRouter);
 app.use('/generaluser', userRouter);
+app.use('/generaluser', userRouter);
+app.use('/generaluser', userRouter);
 
 
 app.listen(8081, ()=>{

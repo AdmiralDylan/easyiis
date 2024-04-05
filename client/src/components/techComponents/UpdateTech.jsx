@@ -8,11 +8,11 @@ import { useLocation } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import SignatureBox from '../features/SignatureBox';
 
-//Update user component 
+//Update tech component 
 
-const UpdateUser = (props) => {
-    const idGeneralUser = props.data.user.idGeneralUser;
-    const [user,setUser] = useState({
+const UpdateTech = (props) => {
+    const idTech = props.data.tech.idTech;
+    const [tech,setTech] = useState({
         dob:"",
         gender:"",
         address:"",
@@ -33,14 +33,14 @@ const UpdateUser = (props) => {
     //console.log("IdSite",idSite);
     
     const handleChange = (e) =>{
-        setUser((prev) => ({...prev,[e.target.name]: e.target.value}));
+        setTech((prev) => ({...prev,[e.target.name]: e.target.value}));
     };
 
     const handleClick = async e =>{
         
         e.preventDefault();
         try{
-            await axios.put(`http://localhost:8081/generaluser/`+idGeneralUser,user);
+            await axios.put(`http://localhost:8081/generaluser/`+idTech,tech);
             window.location.reload()
         }catch(err){
             console.log(err);
@@ -48,14 +48,14 @@ const UpdateUser = (props) => {
     }
 
     return (
-        <div className='UpdateUserPopout'>
+        <div className='UpdateTechPopout'>
             <Popup trigger=
-                {<button>Update User</button>}
+                {<button>Update Tech</button>}
                 modal nested>{
                     close => (
                         <div className='modal'>
                             <div className='form'>
-                                <h1>Update User</h1>
+                                <h1>Update Tech</h1>
                                 <input type="date" placeholder='dob' onChange={handleChange} name="dob" />
                                 <input type="text" placeholder='gender' onChange={handleChange} name="gender" />
                                 <input type="text" placeholder='address' onChange={handleChange} name="address" />
@@ -87,4 +87,4 @@ const UpdateUser = (props) => {
     );
 };
 
-export default UpdateUser
+export default UpdateTech

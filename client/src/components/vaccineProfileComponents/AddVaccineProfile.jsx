@@ -4,15 +4,14 @@ import 'reactjs-popup/dist/index.css';
 import axios from 'axios'
 import { useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import SignatureBox from '../features/SignatureBox';
 
-//Update user component 
+//AddVaccineProfile component
 
-const UpdateUser = (props) => {
-    const idGeneralUser = props.data.user.idGeneralUser;
-    const [user,setUser] = useState({
+const AddVaccineProfile = () => {
+    const [vaccineProfile,setVaccineProfile] = useState({
+
         dob:"",
         gender:"",
         address:"",
@@ -26,53 +25,47 @@ const UpdateUser = (props) => {
         doseAmount:0
     });
 
-    //const navigate = useNavigate();
+    const[isOpen, setIsOpen] = useState(false)
 
-    //const location = useLocation();
-    
-    //console.log("IdSite",idSite);
-    
+    const navigate = useNavigate();
+
     const handleChange = (e) =>{
         setUser((prev) => ({...prev,[e.target.name]: e.target.value}));
     };
 
     const handleClick = async e =>{
-        
-        e.preventDefault();
         try{
-            await axios.put(`http://localhost:8081/generaluser/`+idGeneralUser,user);
+            await axios.post("http://localhost:8081/generaluser",vaccineProfile);
+            setIsOpen(false);
             window.location.reload()
         }catch(err){
-            console.log(err);
+            console.log(err)
         }
+
     }
 
+    console.log(vaccineProfile)
     return (
-        <div className='UpdateUserPopout'>
+        <div className='addSitePopout'>
             <Popup trigger=
-                {<button>Update User</button>}
-                modal nested>{
+                {<button>Add new Vaccine Profile</button>}
+                modal opened nested>{
                     close => (
                         <div className='modal'>
                             <div className='form'>
-                                <h1>Update User</h1>
+                                <h1>Add New Vaccine Profile</h1>
                                 <input type="date" placeholder='dob' onChange={handleChange} name="dob" />
                                 <input type="text" placeholder='gender' onChange={handleChange} name="gender" />
                                 <input type="text" placeholder='address' onChange={handleChange} name="address" />
                                 <input type="text" placeholder='first name' onChange={handleChange} name="nameFirst" />
                                 <input type="text" placeholder='last name' onChange={handleChange} name="nameLast" />
-                                <input type="text" placeholder='signature' onChange={handleChange} name="signature" />
                                 <input type="text" placeholder='email' onChange={handleChange} name="email" />
                                 <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_idVaccineSite" />
                                 <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_company_idCompany" />
                                 <input type="text" placeholder='vaccine administration site' onChange={handleChange} name="administrationSite" />
                                 <input type="number" placeholder='dose amount' onChange={handleChange} name="doseAmount" />
-
-                                <Routes>
-                                   <Route index element={<SignatureBox/>} /> 
-                                </Routes>
                             </div>
-                            <button onClick={handleClick}>Update</button>
+                            <button onClick={handleClick}>Add</button>
                             <div>
                                 <button onClick=
                                     {() => close()}>
@@ -87,4 +80,4 @@ const UpdateUser = (props) => {
     );
 };
 
-export default UpdateUser
+export default AddVaccineProfile

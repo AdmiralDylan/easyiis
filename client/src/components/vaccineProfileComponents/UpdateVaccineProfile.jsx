@@ -8,11 +8,11 @@ import { useLocation } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import SignatureBox from '../features/SignatureBox';
 
-//Update user component 
+//Update vaccineProfile component 
 
-const UpdateUser = (props) => {
-    const idGeneralUser = props.data.user.idGeneralUser;
-    const [user,setUser] = useState({
+const UpdateVaccineProfile = (props) => {
+    const idVaccineProfile = props.data.vaccineProfile.idVaccineProfile;
+    const [vaccineProfile,setVaccineProfile] = useState({
         dob:"",
         gender:"",
         address:"",
@@ -33,14 +33,14 @@ const UpdateUser = (props) => {
     //console.log("IdSite",idSite);
     
     const handleChange = (e) =>{
-        setUser((prev) => ({...prev,[e.target.name]: e.target.value}));
+        setVaccineProfile((prev) => ({...prev,[e.target.name]: e.target.value}));
     };
 
     const handleClick = async e =>{
         
         e.preventDefault();
         try{
-            await axios.put(`http://localhost:8081/generaluser/`+idGeneralUser,user);
+            await axios.put(`http://localhost:8081/generaluser/`+idVaccineProfile,vaccineProfile);
             window.location.reload()
         }catch(err){
             console.log(err);
@@ -48,14 +48,14 @@ const UpdateUser = (props) => {
     }
 
     return (
-        <div className='UpdateUserPopout'>
+        <div className='UpdateVaccineProfilePopout'>
             <Popup trigger=
-                {<button>Update User</button>}
+                {<button>Update Vaccine Profile</button>}
                 modal nested>{
                     close => (
                         <div className='modal'>
                             <div className='form'>
-                                <h1>Update User</h1>
+                                <h1>Update Vaccine Profile</h1>
                                 <input type="date" placeholder='dob' onChange={handleChange} name="dob" />
                                 <input type="text" placeholder='gender' onChange={handleChange} name="gender" />
                                 <input type="text" placeholder='address' onChange={handleChange} name="address" />
@@ -67,10 +67,6 @@ const UpdateUser = (props) => {
                                 <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_company_idCompany" />
                                 <input type="text" placeholder='vaccine administration site' onChange={handleChange} name="administrationSite" />
                                 <input type="number" placeholder='dose amount' onChange={handleChange} name="doseAmount" />
-
-                                <Routes>
-                                   <Route index element={<SignatureBox/>} /> 
-                                </Routes>
                             </div>
                             <button onClick={handleClick}>Update</button>
                             <div>
@@ -87,4 +83,4 @@ const UpdateUser = (props) => {
     );
 };
 
-export default UpdateUser
+export default UpdateVaccineProfile
