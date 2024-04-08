@@ -16,7 +16,7 @@ const IndexVaccineProfiles = () => {
   useEffect(()=>{
     const fetchAllVaccineProfiles = async ()=>{
       try{
-        const res = await axios.get("http://localhost:8081/generaluser")
+        const res = await axios.get("http://localhost:8081/vaccineProfile")
         setVaccineProfiles(res.data);
       }catch(err){
         console.log(err)
@@ -27,7 +27,7 @@ const IndexVaccineProfiles = () => {
 
   const handleDelete = async (idVaccineProfile) => {
     try {
-      await axios.delete("http://localhost:8081/generaluser/"+idVaccineProfile)
+      await axios.delete("http://localhost:8081/vaccineProfile/"+idVaccineProfile)
       window.location.reload()
     } catch (err) {
       console.log(err)
@@ -42,7 +42,7 @@ const IndexVaccineProfiles = () => {
         <div className="vaccineProfile" key={vaccineProfile.idVaccineProfile}>
 
           <h3>{vaccineProfile.vaccineName}</h3>
-          <button className="deleteUser" onClick={()=>handleDelete(vaccineProfile.idVaccineProfile)}>delete</button>
+          <button className="deleteVaccineProfile" onClick={()=>handleDelete(vaccineProfile.idVaccineProfile)}>delete</button>
           <Routes>
             <Route index element={<UpdateVaccineProfile
             data={{vaccineProfile}}/>}/>
@@ -55,6 +55,6 @@ const IndexVaccineProfiles = () => {
       </Routes>
   </div>
   );
-};
+}
 
 export default IndexVaccineProfiles

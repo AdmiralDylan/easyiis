@@ -4,12 +4,12 @@ import { useState} from 'react'
 import axios from 'axios'
 import { Link, Routes } from 'react-router-dom';
 import { Route } from "react-router-dom";
-import AddTech from "./AddTech";
-import UpdateTech from "./UpdateTech";
+import AddTech from "../components/techComponents/AddTech";
+import UpdateTech from "../components/techComponents/UpdateTech";
+import IndexTechs from '../components/techComponents/IndexTechs';
 
 
-
-const IndexTechs = () => {
+const Techs = () => {
 
   const[techs,setTechs] = useState([])
 
@@ -36,24 +36,11 @@ const IndexTechs = () => {
 
   return (
   <div>
-    <div className="Techs">
-      <h1>Techs</h1>
-      {techs.map(tech=>(
-        <div className="tech" key={tech.idTech}>
-          <h3>{tech.nameFirst}</h3>
-          <button className="deleteTech" onClick={()=>handleDelete(tech.idTech)}>delete</button>
-          <Routes>
-            <Route index element={<UpdateTech
-            data={{tech}}/>}/>
-          </Routes>
-        </div>
-      ))}
-      </div>
-      <Routes>
-        <Route index element={<AddTech/>}/>
-      </Routes>
+    <Routes>
+      <Route index element={<IndexTechs/>}/>
+    </Routes>
   </div>
   );
-};
+}
 
-export default IndexTechs
+export default Techs

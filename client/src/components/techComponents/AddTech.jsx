@@ -11,18 +11,14 @@ import SignatureBox from '../features/SignatureBox';
 
 const AddTech = () => {
     const [tech,setTech] = useState({
-
-        dob:"",
-        gender:"",
-        address:"",
+        password:"",
+        username:"",
+        isAdmin:"",
         nameFirst:"",
         nameLast:"",
         signature:"",
         email:"",
-        vaccineSite_idVaccineSite:0,
-        vaccineSite_company_idCompany:0,
-        administrationSite:"",
-        doseAmount:0
+        company_idCompany:0
     });
 
     const[isOpen, setIsOpen] = useState(false)
@@ -35,7 +31,7 @@ const AddTech = () => {
 
     const handleClick = async e =>{
         try{
-            await axios.post("http://localhost:8081/generaluser",tech);
+            await axios.post("http://localhost:8081/tech",tech);
             setIsOpen(false);
             window.location.reload()
         }catch(err){
@@ -54,16 +50,13 @@ const AddTech = () => {
                         <div className='modal'>
                             <div className='form'>
                                 <h1>Add New Tech</h1>
-                                <input type="date" placeholder='dob' onChange={handleChange} name="dob" />
-                                <input type="text" placeholder='gender' onChange={handleChange} name="gender" />
-                                <input type="text" placeholder='address' onChange={handleChange} name="address" />
+                                <input type="text" placeholder='password' onChange={handleChange} name="password" />
+                                <input type="text" placeholder='username' onChange={handleChange} name="username" />
+                                <input type="boolean" placeholder='is admin?' onChange={handleChange} name="isAdmin" />
                                 <input type="text" placeholder='first name' onChange={handleChange} name="nameFirst" />
                                 <input type="text" placeholder='last name' onChange={handleChange} name="nameLast" />
                                 <input type="text" placeholder='email' onChange={handleChange} name="email" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_idVaccineSite" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_company_idCompany" />
-                                <input type="text" placeholder='vaccine administration site' onChange={handleChange} name="administrationSite" />
-                                <input type="number" placeholder='dose amount' onChange={handleChange} name="doseAmount" />
+                                <input type="number" placeholder='1' onChange={handleChange} name="company_idCompany" />
 
                                 <Routes>
                                    <Route index element={<SignatureBox/>} /> 

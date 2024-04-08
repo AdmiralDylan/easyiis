@@ -17,7 +17,7 @@ const handleClick = async e =>{
       const res = await axios.post(`http://localhost:8081/tech`,techs);
       console.log('REUSLT:', res)
       if(res.status === 200){
-        navigate("/sites");
+        navigate("/landing");
       }
   }catch(err){
       console.log(err)
