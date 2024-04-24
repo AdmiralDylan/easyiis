@@ -26,11 +26,6 @@ const UpdateUser = (props) => {
         doseAmount:0
     });
 
-    //const navigate = useNavigate();
-
-    //const location = useLocation();
-    
-    //console.log("IdSite",idSite);
     
     const handleChange = (e) =>{
         setUser((prev) => ({...prev,[e.target.name]: e.target.value}));

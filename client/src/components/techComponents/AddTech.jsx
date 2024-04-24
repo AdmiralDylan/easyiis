@@ -9,6 +9,9 @@ import SignatureBox from '../features/SignatureBox';
 
 //AddTech component
 
+const data = JSON.parse(localStorage.getItem("tech"));
+
+
 const AddTech = () => {
     const [tech,setTech] = useState({
         password:"",
@@ -18,11 +21,10 @@ const AddTech = () => {
         nameLast:"",
         signature:"",
         email:"",
-        company_idCompany:0
+        company_idCompany:data[0].company_idCompany
     });
 
     const[isOpen, setIsOpen] = useState(false)
-
     const navigate = useNavigate();
 
     const handleChange = (e) =>{
@@ -40,7 +42,6 @@ const AddTech = () => {
 
     }
 
-    console.log(tech)
     return (
         <div className='addTechPopout'>
             <Popup trigger=
@@ -56,7 +57,7 @@ const AddTech = () => {
                                 <input type="text" placeholder='first name' onChange={handleChange} name="nameFirst" />
                                 <input type="text" placeholder='last name' onChange={handleChange} name="nameLast" />
                                 <input type="text" placeholder='email' onChange={handleChange} name="email" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="company_idCompany" />
+                                
 
                                 <Routes>
                                    <Route index element={<SignatureBox/>} /> 

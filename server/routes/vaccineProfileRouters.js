@@ -1,10 +1,14 @@
 import express from "express";
 import db from "../db.js";
-const router = express.Router();
+const router = express.Router()
+
+
 
 router.get("/",(req,res)=>{
-    const q = "SELECT * FROM vaccineProfile"
-    db.query(q,(err,data)=>{
+    const value = [req.params.company_idCompany]
+    const q = "SELECT * FROM vaccineProfile WHERE company_idCompany=?"
+
+    db.query(q,value,(err,data)=>{
         if(err) return res.json(err)
         return res.json(data)
     })

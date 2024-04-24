@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import axios from 'axios'
 import { useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Context } from '../Context';
 
 
 //Addsite component
 
 const AddSite = () => {
+    const data = JSON.parse(localStorage.getItem("tech"));
+    console.log("data from addsite ",data[0].company_idCompany)
+    
     const [site,setSite] = useState({
         siteName:"",
         siteDescription:"",
@@ -17,7 +21,7 @@ const AddSite = () => {
         operationTimeEnd:"",
         timeInterval:15,
         siteAddress:"",
-        company_idCompany:0
+        company_idCompany:data[0].company_idCompany
     });
 
     const[isOpen, setIsOpen] = useState(false)
@@ -39,7 +43,6 @@ const AddSite = () => {
 
     }
 
-    console.log(site)
     return (
         <div className='addSitePopout'>
             <Popup trigger=
@@ -56,7 +59,6 @@ const AddSite = () => {
                                 <input type="time" placeholder='site end time' onChange={handleChange} name="operationTimeEnd" />
                                 <input type="number" placeholder='time interval' onChange={handleChange} name="timeInterval" />
                                 <input type="text" placeholder='site address' onChange={handleChange} name="siteAddress" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="company_idCompany" />
 
 
                             </div>

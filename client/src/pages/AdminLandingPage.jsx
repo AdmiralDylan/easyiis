@@ -2,18 +2,17 @@ import React from 'react'
 import IndexSite from '../components/siteComponents/IndexSite'
 import AddSite from '../components/siteComponents/AddSite';
 import AddTech from '../components/techComponents/AddTech';
-
+import { Context } from '../components/Context';
+import { useContext } from 'react';
 
 import { Link, Routes, Route } from 'react-router-dom';
 
+
 const AdminLandingPage = () => {
 
+    
 
-
-
-
-
-  return (
+return (
     <div>
         <h1>
             Admin Landing Page
@@ -21,7 +20,7 @@ const AdminLandingPage = () => {
 
         <div>
             <button><Link to ="/sites">View Sites</Link></button>
-            <Routes><Route index element={<AddSite/>}/></Routes>
+            <Routes><Route index element={<AddSite />}/></Routes>
             <button><Link to ="/tech">View Techs</Link></button>
             <Routes><Route index element={<AddTech/>}/></Routes>
         </div>

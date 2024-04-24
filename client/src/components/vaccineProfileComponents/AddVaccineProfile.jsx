@@ -34,7 +34,6 @@ const AddVaccineProfile = () => {
 
     }
 
-    console.log(vaccineProfile)
     return (
         <div className='addVaccineProfilePopout'>
             <Popup trigger=

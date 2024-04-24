@@ -2,16 +2,21 @@ import express from "express";
 import db from "../db.js";
 const router = express.Router();
 
-router.get("/",(req,res)=>{
-    const q = "SELECT * FROM generaluser"
-    db.query(q,(err,data)=>{
-        if(err) return res.json(err)
-        return res.json(data)
-    })
-})
+router.get("/:vaccineSite_idVaccineSite",(req,res)=>{
+    
+    const value = [req.params.vaccineSite_idVaccineSite]
+    console.log("id site from getting users = " + value)
 
-router.post("/",(req,res)=>{
-    const q = "INSERT INTO user (`dob`,`gender`,`adress`,`nameFirst`,`nameLast`,`signature`,`email`,`vaccineSite_idVaccineSite`,`vaccineSite_company_idCompany`,`administrationSite`,`doseAmount`) VALUES (?)";
+    const q = "SELECT * FROM generaluser WHERE vaccineSite_idVaccineSite=?"
+
+    db.query(q,[value],(err,data)=>{
+        if(err) return res.json(err);
+        return res.json(data);
+    });
+});
+
+router.post("/:vaccineSite_idVaccineSite",(req,res)=>{
+    const q = "INSERT INTO generaluser (`dob`,`gender`,`adress`,`nameFirst`,`nameLast`,`signature`,`email`,`vaccineSite_idVaccineSite`,`vaccineSite_company_idCompany`,`administrationSite`,`doseAmount`) VALUES (?)";
     const values = [
         req.body.dob,
         req.body.gender,
@@ -20,7 +25,7 @@ router.post("/",(req,res)=>{
         req.body.nameLast,
         req.body.signature,
         req.body.email,
-        req.body.vaccineSite_idVaccineSite,
+        req.params.vaccineSite_idVaccineSite,
         req.body.vaccineSite_company_idCompany,
         req.body.administrationSite,
         req.body.doseAmount
@@ -34,7 +39,7 @@ router.post("/",(req,res)=>{
 
 router.put("/:idGeneralUser",(req,res)=>{
     console.log('query',req.params['idGeneralUser']);
-    const q = "UPDATE site SET `siteName` =?,`siteDescription`=?,`operationDate`=?,`operationTimeStart`=?,`operationTimeEnd`=?,`timeInterval`=?,`siteAddress`=?,`company_idCompany`=? WHERE idSite = ?";
+    const q = "UPDATE generaluser SET `dob` =?,`gender`=?,`address`=?,`nameFirst`=?,`nameLast`=?,`signature`=?,`email`=?,`vaccineSite_idVaccineSite`=?,`vaccineSite_company_idCompany`=?,`administrationSite`=?, `doseAmount`=? WHERE idGeneralUser = ?";
     const values = [
         req.body.dob,
         req.body.gender,
@@ -47,7 +52,7 @@ router.put("/:idGeneralUser",(req,res)=>{
         req.body.vaccineSite_company_idCompany,
         req.body.administrationSite,
         req.body.doseAmount,
-        req.params['idGeneralUser'],
+        req.params['idGeneralUser']
     ]
     console.log("values into SQL",values);
     db.query(q,values, (err,data)=>{
@@ -63,7 +68,7 @@ router.delete("/:idGeneralUser", (req,res)=>{
     db.query(q,[idGeneralUser],(err,data)=>{
         if(err) return res.json(err);
         return res.json(data);
-    })
-})
+    });
+});
 
 export default router;

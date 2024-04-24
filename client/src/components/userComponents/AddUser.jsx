@@ -9,9 +9,10 @@ import SignatureBox from '../features/SignatureBox';
 
 //AddUser component
 
-const AddUser = () => {
+const AddUser = (s) => {
+    const data = s;
+    console.log("value from prop from user " + data);
     const [user,setUser] = useState({
-
         dob:"",
         gender:"",
         address:"",
@@ -19,7 +20,7 @@ const AddUser = () => {
         nameLast:"",
         signature:"",
         email:"",
-        vaccineSite_idVaccineSite:0,
+        vaccineSite_idVaccineSite:data,
         vaccineSite_company_idCompany:0,
         administrationSite:"",
         doseAmount:0
@@ -44,7 +45,6 @@ const AddUser = () => {
 
     }
 
-    console.log(user)
     return (
         <div className='addSitePopout'>
             <Popup trigger=

@@ -2,9 +2,14 @@ import express from "express";
 import db from "../db.js";
 const router = express.Router();
 
-router.get("/",(req,res)=>{
-    const q = "SELECT * FROM site"
-    db.query(q,(err,data)=>{
+router.get("/:company_idCompany",(req,res)=>{
+    const value = [req.params.company_idCompany]
+    //console.log("companyId req from site router, router get ",value)
+
+
+    const q = "SELECT * FROM site WHERE company_idCompany =?"
+    //console.log("companyId from site router, router get",value)
+    db.query(q,value,(err,data)=>{
         if(err) return res.json(err)
         return res.json(data)
     })
@@ -46,7 +51,7 @@ router.put("/:idSite",(req,res)=>{
     console.log("values into SQL",values);
     db.query(q,values, (err,data)=>{
         if(err) return res.json(err);
-        return res.json("Book Update");
+        return res.json("site Update");
     });
 });
 

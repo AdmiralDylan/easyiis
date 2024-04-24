@@ -24,9 +24,7 @@ const UpdateSite = (props) => {
     //const navigate = useNavigate();
 
     //const location = useLocation();
-    
-    console.log("IdSite",idSite);
-    
+        
     const handleChange = (e) =>{
         setSite((prev) => ({...prev,[e.target.name]: e.target.value}));
     };

@@ -11,12 +11,15 @@ import UpdateTech from "./UpdateTech";
 
 const IndexTechs = () => {
 
+  const data = JSON.parse(localStorage.getItem("tech"));
+  //console.log("data from indextechs ",data[0].company_idCompany)
+
   const[techs,setTechs] = useState([])
 
   useEffect(()=>{
     const fetchAllTechs = async ()=>{
       try{
-        const res = await axios.get("http://localhost:8081/tech")
+        const res = await axios.get(`http://localhost:8081/tech/${data[0].company_idCompany}`)
         setTechs(res.data);
       }catch(err){
         console.log(err)
@@ -26,9 +29,9 @@ const IndexTechs = () => {
   },[])
 
   const handleDelete = async (idTech) => {
+    console.log("handle delete " + idTech);
     try {
-      await axios.delete("http://localhost:8081/tech/"+idTech)
-      window.location.reload()
+      await axios.delete("http://localhost:8081/tech/" + idTech)
     } catch (err) {
       console.log(err)
     }
@@ -49,9 +52,6 @@ const IndexTechs = () => {
         </div>
       ))}
       </div>
-      <Routes>
-        <Route index element={<AddTech/>}/>
-      </Routes>
   </div>
   );
 };

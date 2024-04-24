@@ -7,52 +7,28 @@ import { Route } from "react-router-dom";
 import AddSite from "../components/siteComponents/AddSite";
 import UpdateSite from "../components/siteComponents/UpdateSite";
 import IndexUsers from '../components/userComponents/IndexUsers';
+import IndexSite from '../components/siteComponents/IndexSite';
 
 
-const Sites = () => {
-
-  const[sites,setSites] = useState([])
-
-  useEffect(()=>{
-    const fetchAllSites = async ()=>{
-      try{
-        const res = await axios.get("http://localhost:8081/sites")
-        setSites(res.data);
-      }catch(err){
-        console.log(err)
-      }
-    }
-    fetchAllSites()
-  },[])
-
-  const handleDelete = async (idSite) => {
-    try {
-      await axios.delete("http://localhost:8081/sites/"+idSite)
-      window.location.reload()
-    } catch (err) {
-      console.log(err)
-    }
-  }
+const Sites = () => { 
 
   return (
   <div>
-    <div className="Sites">
-      <h1>Sites</h1>
-      {sites.map(site=>(
-        <div className="site" key={site.idSite}>
-          <h3>{site.siteName}</h3>
-          <p>{site.operationDate}</p>
-          <button className="deleteSite" onClick={()=>handleDelete(site.idSite)}>delete</button>
-          <Routes>
-            <Route index element={<UpdateSite
-            data={{site}}/>}/>
-          </Routes>
-        </div>
-      ))}
-      </div>
+    <h3>Sites Page</h3>
+
+    <p>search site</p>
+
+    <div>
       <Routes>
-        <Route index element={<AddSite/>}/>
+        <Route index element= {<AddSite/>} />
       </Routes>
+    </div>
+
+    <div>
+        <Routes>
+          <Route index element= {<IndexSite/>} />
+        </Routes>
+    </div>
   </div>
   );
 };

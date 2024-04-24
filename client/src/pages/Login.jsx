@@ -1,10 +1,13 @@
 import React from 'react'
+
 import axios from 'axios'
-import {useState} from 'react'
+import {useState,useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Context } from '../components/Context'
 
 const Login = () => {
   
+const context = useContext(Context);
 const[techs,setTechs] = useState({
   username:"",
   password:""
@@ -13,11 +16,26 @@ const[techs,setTechs] = useState({
 const navigate = useNavigate();
 
 const handleClick = async e =>{
+
+  localStorage.clear();
+
   try{
-      const res = await axios.post(`http://localhost:8081/tech`,techs);
+      const res = await axios.post(`http://localhost:8081/login`,techs);
       console.log('REUSLT:', res)
       if(res.status === 200){
-        navigate("/landing");
+        console.log("going into get tech " + res.data.idTech)
+        try{
+          context.getTech(res.data.idTech)
+          console.log("local storage just before nav " + localStorage.getItem("tech"))
+          navigate('/landing')
+          window.location.reload()
+
+        }catch(err){
+          console.log("error" + err)
+        }
+        
+      }else{
+        console.log("nope");
       }
   }catch(err){
       console.log(err)
