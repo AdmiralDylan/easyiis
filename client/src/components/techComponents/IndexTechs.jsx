@@ -13,7 +13,7 @@ const IndexTechs = () => {
 
   const data = JSON.parse(localStorage.getItem("tech"));
   //console.log("data from indextechs ",data[0].company_idCompany)
-
+  
   const[techs,setTechs] = useState([])
 
   useEffect(()=>{
@@ -31,7 +31,8 @@ const IndexTechs = () => {
   const handleDelete = async (idTech) => {
     console.log("handle delete " + idTech);
     try {
-      await axios.delete("http://localhost:8081/tech/" + idTech)
+      const res = await axios.delete("http://localhost:8081/tech/" + idTech)
+      window.location.reload()
     } catch (err) {
       console.log(err)
     }

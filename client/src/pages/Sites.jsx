@@ -1,16 +1,20 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState} from 'react'
-import axios from 'axios'
 import { Link, Routes } from 'react-router-dom';
 import { Route } from "react-router-dom";
 import AddSite from "../components/siteComponents/AddSite";
-import UpdateSite from "../components/siteComponents/UpdateSite";
-import IndexUsers from '../components/userComponents/IndexUsers';
 import IndexSite from '../components/siteComponents/IndexSite';
 
 
 const Sites = () => { 
+
+  let data = JSON.parse(localStorage.getItem("tech"));
+
+  let isAdmin = data[0].isAdmin;
+  let isAllowed = false;
+
+  if(isAdmin === 1){
+    isAllowed = true;
+  }
 
   return (
   <div>
@@ -18,11 +22,13 @@ const Sites = () => {
 
     <p>search site</p>
 
+    {isAllowed && 
     <div>
       <Routes>
         <Route index element= {<AddSite/>} />
       </Routes>
     </div>
+    }
 
     <div>
         <Routes>

@@ -3,27 +3,29 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import axios from 'axios'
 import { useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { parsePath, useNavigate, useParams } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import SignatureBox from '../features/SignatureBox';
 
 //AddUser component
 
-const AddUser = (s) => {
-    const data = s;
-    console.log("value from prop from user " + data);
+const AddUser = () => {
+    const params = useParams();
+    let compId = JSON.parse(localStorage.getItem("tech"));
     const [user,setUser] = useState({
         dob:"",
         gender:"",
         address:"",
         nameFirst:"",
         nameLast:"",
-        signature:"",
+        signature:new Blob(),
         email:"",
-        vaccineSite_idVaccineSite:data,
-        vaccineSite_company_idCompany:0,
+        vaccineSite_idVaccineSite:params.id,
+        vaccineSite_company_idCompany:compId[0].company_idCompany,
         administrationSite:"",
-        doseAmount:0
+        doseAmount:0,
+        checkedIn:0,
+        checkedInTime:0
     });
 
     const[isOpen, setIsOpen] = useState(false)
@@ -36,7 +38,8 @@ const AddUser = (s) => {
 
     const handleClick = async e =>{
         try{
-            await axios.post("http://localhost:8081/generaluser",user);
+            const blea = await axios.post("http://localhost:8081/generaluser/",user);
+            console.log("response from node ",JSON.stringify(blea))
             setIsOpen(false);
             window.location.reload()
         }catch(err){
@@ -60,10 +63,6 @@ const AddUser = (s) => {
                                 <input type="text" placeholder='first name' onChange={handleChange} name="nameFirst" />
                                 <input type="text" placeholder='last name' onChange={handleChange} name="nameLast" />
                                 <input type="text" placeholder='email' onChange={handleChange} name="email" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_idVaccineSite" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_company_idCompany" />
-                                <input type="text" placeholder='vaccine administration site' onChange={handleChange} name="administrationSite" />
-                                <input type="number" placeholder='dose amount' onChange={handleChange} name="doseAmount" />
 
                                 <Routes>
                                    <Route index element={<SignatureBox/>} type="img" onChange={handleChange} name="signature"/> 

@@ -2,8 +2,6 @@ import React from 'react'
 import IndexSite from '../components/siteComponents/IndexSite'
 import AddSite from '../components/siteComponents/AddSite';
 import AddTech from '../components/techComponents/AddTech';
-import { Context } from '../components/Context';
-import { useContext } from 'react';
 
 import { Link, Routes, Route } from 'react-router-dom';
 
@@ -32,8 +30,8 @@ return (
             </Routes>
         </div>
         <br></br>
-        <button><Link to ="/vaccineProfiles">View Sites</Link></button>
-        <button>Download CSV</button>
+        <button><Link to ="/vaccineProfiles">Vaccine Profiles</Link></button>
+        <button><Link to ="/downloadCSV">Download CSV</Link></button>
     </div>
   )
 }

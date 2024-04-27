@@ -12,6 +12,8 @@ import SignatureBox from '../features/SignatureBox';
 
 const UpdateTech = (props) => {
     const idTech = props.data.tech.idTech;
+    let data = JSON.parse(localStorage.getItem("tech"))
+
     const [tech,setTech] = useState({
         password:"",
         username:"",
@@ -20,15 +22,9 @@ const UpdateTech = (props) => {
         nameLast:"",
         signature:"",
         email:"",
-        company_idCompany:0
+        company_idCompany:data[0].company_idCompany
     });
 
-    //const navigate = useNavigate();
-
-    //const location = useLocation();
-    
-    //console.log("IdSite",idSite);
-    
     const handleChange = (e) =>{
         setTech((prev) => ({...prev,[e.target.name]: e.target.value}));
     };
@@ -59,7 +55,6 @@ const UpdateTech = (props) => {
                                 <input type="text" placeholder='first name' onChange={handleChange} name="nameFirst" />
                                 <input type="text" placeholder='last name' onChange={handleChange} name="nameLast" />
                                 <input type="text" placeholder='email' onChange={handleChange} name="email" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="company_idCompany" />
 
                                 <Routes>
                                    <Route index element={<SignatureBox/>} /> 

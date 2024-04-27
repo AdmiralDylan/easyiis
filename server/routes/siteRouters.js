@@ -48,7 +48,7 @@ router.put("/:idSite",(req,res)=>{
         req.body.company_idCompany,
         req.params['idSite'],
     ]
-    console.log("values into SQL",values);
+    //console.log("values into SQL",values);
     db.query(q,values, (err,data)=>{
         if(err) return res.json(err);
         return res.json("site Update");

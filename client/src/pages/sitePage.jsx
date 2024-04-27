@@ -1,23 +1,23 @@
 import React from 'react'
 import AddUser from '../components/userComponents/AddUser';
 import IndexUsers from '../components/userComponents/IndexUsers';
-import { Route, Routes, useNavigate, useParams } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 
 
 
 
 const SitePage = () => {
 
-  const params = useParams();
-  const siteId = params.id;
 
-  console.log("Site id from params from sitePage = ",siteId);
+  let params = useParams();
+  console.log("Site id from params from sitePage params = ",params.id);
 
   return (
     <div>
       <h1>Site Name</h1>
       <p>Site date</p>
-      
+      <Link to ='/sites'>back to sites</Link>
+
       <div>
         <p>search users</p>
         
@@ -25,7 +25,7 @@ const SitePage = () => {
 
       <div>
         <Routes>
-          <Route index element={<AddUser value={siteId}/>}/>
+          <Route index element={<AddUser data={params.id}/>}/>
         </Routes>
       </div>
 
@@ -35,6 +35,7 @@ const SitePage = () => {
                 <Route index element= {<IndexUsers/>} />
             </Routes>
         </div>
+
     </div>
     )
 }

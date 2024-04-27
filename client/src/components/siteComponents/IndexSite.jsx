@@ -14,9 +14,16 @@ const IndexSite = () => {
   const navigate = useNavigate();
   const[sites,setSites] = useState([])  
 
-  const data = JSON.parse(localStorage.getItem("tech"));
+  let data = JSON.parse(localStorage.getItem("tech"));
   //console.log("data from addsite ",data[0].company_idCompany)
+  
+  //Giving context to non admins and admins
+  let isAdmin = data[0].isAdmin;
+  let isAllowed = false;
 
+  if(isAdmin === 1){
+    isAllowed = true;
+  }
 
   useEffect(()=>{
     const fetchAllSites = async ()=>{
@@ -32,7 +39,9 @@ const IndexSite = () => {
 
   const handleDelete = async (idSite) => {
     try {
-      await axios.delete("http://localhost:8081/sites/"+idSite)
+      const res = await axios.delete("http://localhost:8081/sites/"+idSite)
+      console.log("res from delete " + res)
+      window.location.reload()
     } catch (err) {
       console.log(err)
     }
@@ -55,11 +64,12 @@ const IndexSite = () => {
         <div className="site" key={site.idSite}>
           <button onClick={()=>handleNavigate(site.idSite)}><h3>{site.siteName}</h3></button>
           <p>{site.operationDate}</p>
-          <button className="deleteSite" onClick={()=>handleDelete(site.idSite)}>delete</button>
-          <Routes>
+          {isAllowed && <button className="deleteSite" onClick={()=>handleDelete(site.idSite)}>delete</button>}
+          {isAllowed && <Routes>
             <Route index element={<UpdateSite
             data={{site}}/>}/>
           </Routes>
+          }
         </div>
       ))}
       </div>

@@ -6,13 +6,9 @@ import Techs from "./pages/Techs";
 import VaccineProfilePage from "./pages/VaccineProfilePage";
 import SitePage from "./pages/SitePage";
 import ContextProvider from "./components/Context";
-import axios from "axios";
+import DownloadCSV from "./pages/DownloadCSV";
 
 function App() {
-
-  const user = [
-
-  ];
 
   return (
     <div className="App">
@@ -25,6 +21,7 @@ function App() {
             <Route path="/landing" element={<AdminLandingPage/>}/>
             <Route path="/tech" element={<Techs/>}/>
             <Route path="/vaccineProfiles" element={<VaccineProfilePage/>}/>
+            <Route path="/downloadCSV" element={<DownloadCSV/>}/>
           </Routes>
         </BrowserRouter>
       </ContextProvider>

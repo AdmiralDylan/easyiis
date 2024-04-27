@@ -10,7 +10,7 @@ import { Context } from '../Context';
 //Addsite component
 
 const AddSite = () => {
-    const data = JSON.parse(localStorage.getItem("tech"));
+    let data = JSON.parse(localStorage.getItem("tech"));
     console.log("data from addsite ",data[0].company_idCompany)
     
     const [site,setSite] = useState({

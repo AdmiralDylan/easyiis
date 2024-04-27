@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom';
 
 const UpdateSite = (props) => {
     const idSite = props.data.site.idSite;
+    const data = localStorage.getItem("tech")
     const [site,setSite] = useState({
         siteName:"",
         siteDescription:"",
@@ -18,12 +19,8 @@ const UpdateSite = (props) => {
         operationTimeEnd:"",
         timeInterval:15,
         siteAddress:"",
-        company_idCompany:0
+        company_idCompany:data[0].company_idCompany
     });
-
-    //const navigate = useNavigate();
-
-    //const location = useLocation();
         
     const handleChange = (e) =>{
         setSite((prev) => ({...prev,[e.target.name]: e.target.value}));
@@ -56,9 +53,6 @@ const UpdateSite = (props) => {
                                 <input type="time" placeholder='site end time' onChange={handleChange} name="operationTimeEnd" />
                                 <input type="number" placeholder='time interval' onChange={handleChange} name="timeInterval" />
                                 <input type="text" placeholder='site address' onChange={handleChange} name="siteAddress" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="company_idCompany" />
-
-
                             </div>
                             <button onClick={handleClick}>Update</button>
                             <div>

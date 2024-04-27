@@ -12,6 +12,9 @@ import SignatureBox from '../features/SignatureBox';
 
 const UpdateUser = (props) => {
     const idGeneralUser = props.data.user.idGeneralUser;
+    const data = localStorage.getItem("tech")
+    console.log("site id general user" + props.data.user.vaccineSite_idVaccineSite);
+
     const [user,setUser] = useState({
         dob:"",
         gender:"",
@@ -20,10 +23,6 @@ const UpdateUser = (props) => {
         nameLast:"",
         signature:"",
         email:"",
-        vaccineSite_idVaccineSite:0,
-        vaccineSite_company_idCompany:0,
-        administrationSite:"",
-        doseAmount:0
     });
 
     
@@ -58,10 +57,6 @@ const UpdateUser = (props) => {
                                 <input type="text" placeholder='last name' onChange={handleChange} name="nameLast" />
                                 <input type="text" placeholder='signature' onChange={handleChange} name="signature" />
                                 <input type="text" placeholder='email' onChange={handleChange} name="email" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_idVaccineSite" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="vaccineSite_company_idCompany" />
-                                <input type="text" placeholder='vaccine administration site' onChange={handleChange} name="administrationSite" />
-                                <input type="number" placeholder='dose amount' onChange={handleChange} name="doseAmount" />
 
                                 <Routes>
                                    <Route index element={<SignatureBox/>} /> 

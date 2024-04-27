@@ -6,17 +6,19 @@ import { Link, Routes, parsePath, useParams } from 'react-router-dom';
 import { Route } from "react-router-dom";
 import AddUser from "./AddUser";
 import UpdateUser from "./UpdateUser";
+import CheckIn from './CheckIn';
+import Scribe from './Scribe';
 
 
 
 const IndexUsers = () => {
+
+  
   const params = useParams();
   const[users,setUsers] = useState([])
-
   useEffect(()=>{
     const fetchAllUsers = async ()=>{
       try{
-        const siteId = [parsePath(window.location.href)];
         console.log("site id for user navigation = ", params.id);
         const res = await axios.get("http://localhost:8081/generaluser/"+params.id);
         setUsers(res.data);
@@ -49,12 +51,17 @@ const IndexUsers = () => {
             <Route index element={<UpdateUser
             data={{user}}/>}/>
           </Routes>
+          <Routes>
+            <Route index element={<CheckIn
+            data={{user}}/>}/>
+          </Routes>
+          <Routes>
+            <Route index element={<Scribe
+            data={{user}}/>}/>
+          </Routes>
         </div>
       ))}
       </div>
-      <Routes>
-        <Route index element={<AddUser/>}/>
-      </Routes>
   </div>
   );
 };

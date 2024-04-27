@@ -10,15 +10,7 @@ router.get("/:company_idCompany",(req,res)=>{
         return res.json(data)
     })
 })
-//Get Tech from tech id
-router.get("/:idTech",(req,res)=>{
-    const value = [req.params.idTech]
-    const q = "SELECT * FROM tech WHERE idTech =?"
-    db.query(q,value,(err,data)=>{
-        if(err) return res.json(err)
-        return res.json(data)
-    })
-})
+
 
 
 router.post("/",(req,res)=>{
@@ -41,7 +33,6 @@ router.post("/",(req,res)=>{
 });
 
 router.put("/:idTech",(req,res)=>{
-    //console.log('query',req.params['idTech']);
     const q = "UPDATE tech SET `password` =?,`username`=?,`isAdmin`=?,`nameFirst`=?,`nameLast`=?,`signature`=?,`email`=?,`company_idCompany`=? WHERE idTech = ?";
     const values = [
         req.body.password,
@@ -63,7 +54,7 @@ router.put("/:idTech",(req,res)=>{
 
 router.delete("/:idTech", (req,res)=>{
     const idTech = req.params.idTech;
-    const q = "DELETE FROM idTech WHERE idTech = ?";
+    const q = "DELETE FROM tech WHERE idTech = ?";
     
     db.query(q,idTech,(err,data)=>{
         if(err) return res.json(err);

@@ -7,6 +7,7 @@ import { Context } from '../components/Context'
 
 const Login = () => {
   
+  
 const context = useContext(Context);
 const[techs,setTechs] = useState({
   username:"",
@@ -23,17 +24,18 @@ const handleClick = async e =>{
       const res = await axios.post(`http://localhost:8081/login`,techs);
       console.log('REUSLT:', res)
       if(res.status === 200){
-        console.log("going into get tech " + res.data.idTech)
+        //console.log("going into get tech " + JSON.stringify(res.data[0]))
         try{
-          context.getTech(res.data.idTech)
-          console.log("local storage just before nav " + localStorage.getItem("tech"))
-          navigate('/landing')
-          window.location.reload()
-
+          localStorage.setItem("tech",JSON.stringify(res.data))
+          //console.log("local storage just before nav " + localStorage.getItem("tech"))
         }catch(err){
           console.log("error" + err)
         }
-        
+        if(res.data[0].isAdmin === 1){
+          navigate('/landing')
+        }else{
+          navigate('/sites')
+        }
       }else{
         console.log("nope");
       }
