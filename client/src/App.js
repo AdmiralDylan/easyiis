@@ -7,6 +7,7 @@ import VaccineProfilePage from "./pages/VaccineProfilePage";
 import SitePage from "./pages/SitePage";
 import ContextProvider from "./components/Context";
 import DownloadCSV from "./pages/DownloadCSV";
+import UserMain from "./pages/userPages/UserMain";
 
 function App() {
 
@@ -21,7 +22,10 @@ function App() {
             <Route path="/landing" element={<AdminLandingPage/>}/>
             <Route path="/tech" element={<Techs/>}/>
             <Route path="/vaccineProfiles" element={<VaccineProfilePage/>}/>
-            <Route path="/downloadCSV" element={<DownloadCSV/>}/>
+
+            <Route path="/userlanding/:id" element={<UserMain/>}/>
+
+
           </Routes>
         </BrowserRouter>
       </ContextProvider>

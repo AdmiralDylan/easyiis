@@ -38,8 +38,7 @@ const AddUser = () => {
 
     const handleClick = async e =>{
         try{
-            const blea = await axios.post("http://localhost:8081/generaluser/",user);
-            console.log("response from node ",JSON.stringify(blea))
+            await axios.post("http://localhost:8081/generaluser/",user);
             setIsOpen(false);
             window.location.reload()
         }catch(err){

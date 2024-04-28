@@ -8,12 +8,14 @@ import loginRouter from "./routes/login.js"
 import checkInRouter from "./routes/checkIn.js"
 import scribeRouter from "./routes/scribe.js"
 import downloadCSVRouter from "./routes/downloadCSV.js"
+import addUserPostRouter from "./routes/addUserPost.js"
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 
+app.use('/addUserPost',addUserPostRouter);
 app.use('/downloadCSV',downloadCSVRouter);
 app.use('/scribe',scribeRouter);
 app.use('/checkIn',checkInRouter);

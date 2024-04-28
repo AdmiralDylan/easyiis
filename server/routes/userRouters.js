@@ -63,7 +63,7 @@ router.put("/:idGeneralUser",(req,res)=>{
 
 router.delete("/:idGeneralUser", (req,res)=>{
     const idGeneralUser = req.params.idGeneralUser;
-    const q = "DELETE FROM idGeneralUser WHERE idGeneralUser = ?";
+    const q = "DELETE FROM generaluser WHERE idGeneralUser = ?";
     
     db.query(q,[idGeneralUser],(err,data)=>{
         if(err) return res.json(err);

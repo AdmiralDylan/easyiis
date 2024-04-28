@@ -4,7 +4,6 @@ import { useState} from 'react'
 import axios from 'axios'
 import { Link, Routes, parsePath, useParams } from 'react-router-dom';
 import { Route } from "react-router-dom";
-import AddUser from "./AddUser";
 import UpdateUser from "./UpdateUser";
 import CheckIn from './CheckIn';
 import Scribe from './Scribe';
@@ -44,8 +43,7 @@ const IndexUsers = () => {
       <h1>Users</h1>
       {users.map(user=>(
         <div className="user" key={user.idGeneralUser}>
-
-          <h3>{user.nameFirst + " " + user.nameLast}</h3>
+          <h3>{user.nameFirst + " " + user.nameLast + " " + user.idGeneralUser}</h3>
           <button className="deleteUser" onClick={()=>handleDelete(user.idGeneralUser)}>delete</button>
           <Routes>
             <Route index element={<UpdateUser
