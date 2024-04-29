@@ -1,13 +1,15 @@
 import React from 'react'
+import SignatureBox from '../../components/features/SignatureBox'
+import { Route, Routes } from 'react-router-dom'
 
 const Confirm = () => {
   return (
     <div>
-        <h2>Title of Site</h2>
+        <p>Sign below to confirm that you have read the previous VIS/EUA document</p>
 
-        <p>Sign below please</p>
-
-        <p>Signature box</p>
+        <Routes>
+          <Route index element={<SignatureBox/>}/>
+        </Routes>
     </div>
   )
 }

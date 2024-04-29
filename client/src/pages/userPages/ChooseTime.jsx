@@ -1,22 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const ChooseTime = () => {
+const ChooseTime = (props) => {
+  const [user,setUser] = useState({
+    checkedInTime:0
+  });
+
+  const handleChange = (e) =>{
+    setUser(({'checkedInTime': e.target.value}));
+  };
+
+  function handleClick() {
+    props.sendUserToParent(user);
+  };
+
   return (
     <div>
-        <h2>Title of Vaccine Site</h2>
-
-        <p>hours of operation -</p>
+      
+      <p>hours of operation {props.sitedata.operationTimeStart}-{props.sitedata.operationTimeEnd}</p>
 
         <div>
-            <p>select availability</p>
-            <p>time</p>
+            <p>Choose a Time</p>
+            <input type="time" placeholder='' onChange={handleChange} name="checkedInTime" />
         </div>
 
-        <h3>Choose a Time</h3>
+        
 
-        <p>map of times</p>
+        <button onClick={handleClick}>Save</button>
+
     </div>
-  )
-}
+  );
+};
 
 export default ChooseTime

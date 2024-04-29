@@ -2,8 +2,8 @@ import React from 'react'
 import IndexSite from '../components/siteComponents/IndexSite'
 import AddSite from '../components/siteComponents/AddSite';
 import AddTech from '../components/techComponents/AddTech';
-
 import { Link, Routes, Route } from 'react-router-dom';
+import NavBar from '../components/features/NavBar';
 
 
 const AdminLandingPage = () => {
@@ -12,6 +12,9 @@ const AdminLandingPage = () => {
 
 return (
     <div>
+        <Routes>
+            <Route index element={<NavBar/>}/>
+        </Routes>
         <h1>
             Admin Landing Page
         </h1>

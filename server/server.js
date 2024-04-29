@@ -2,6 +2,8 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 
+//this only serves as a test during early development. I can't seem to get rid of it lol
+
 const app = express()
 app.use(cors())
 

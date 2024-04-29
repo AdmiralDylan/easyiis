@@ -15,7 +15,6 @@ const IndexSite = () => {
   const[sites,setSites] = useState([])  
 
   let data = JSON.parse(localStorage.getItem("tech"));
-  //console.log("data from addsite ",data[0].company_idCompany)
   
   //Giving context to non admins and admins
   let isAdmin = data[0].isAdmin;

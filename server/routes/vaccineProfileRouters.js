@@ -4,9 +4,9 @@ const router = express.Router()
 
 
 
-router.get("/",(req,res)=>{
-    const value = [req.params.company_idCompany]
-    const q = "SELECT * FROM vaccineProfile WHERE company_idCompany=?"
+router.get("/:company_idCompany",(req,res)=>{
+    const value = req.params.company_idCompany
+    const q = "SELECT * FROM vaccineprofile WHERE company_idCompany=?"
 
     db.query(q,value,(err,data)=>{
         if(err) return res.json(err)
@@ -15,7 +15,7 @@ router.get("/",(req,res)=>{
 })
 
 router.post("/",(req,res)=>{
-    const q = "INSERT INTO vaccineProfile (`cvxCode`,`lotNumber`,`expirationDate`,`vaccineName`,`visDocument`,`company_idCompany`) VALUES (?)";
+    const q = "INSERT INTO vaccineprofile (`cvxCode`,`lotNumber`,`expirationDate`,`vaccineName`,`visDocument`,`company_idCompany`) VALUES (?)";
     const values = [
         req.body.cvxCode,
         req.body.lotNumber,
@@ -25,6 +25,7 @@ router.post("/",(req,res)=>{
         req.body.company_idCompany
     ]
 
+
     db.query(q,[values], (err,data)=>{
         if(err) return res.json(err);
         return res.json(data);
@@ -32,8 +33,7 @@ router.post("/",(req,res)=>{
 });
 
 router.put("/:idVaccineProfile",(req,res)=>{
-    console.log('query',req.params['idVaccineProfile']);
-    const q = "UPDATE vaccineProfile SET `cvxCode` =?,`lotNumber`=?,`expirationDate`=?,`vaccineName`=?,`visDocument`=?,`company_idCompany`=? WHERE idVaccineProfile = ?";
+    const q = "UPDATE vaccineprofile SET `cvxCode` =?,`lotNumber`=?,`expirationDate`=?,`vaccineName`=?,`visDocument`=?,`company_idCompany`=? WHERE idVaccineProfile = ?";
     const values = [
         req.body.cvxCode,
         req.body.lotNumber,
@@ -43,7 +43,6 @@ router.put("/:idVaccineProfile",(req,res)=>{
         req.body.company_idCompany,
         req.params['idVaccineProfile']
     ]
-    console.log("values into SQL",values);
     db.query(q,values, (err,data)=>{
         if(err) return res.json(err);
         return res.json("Vaccine Profile Update");
@@ -52,7 +51,7 @@ router.put("/:idVaccineProfile",(req,res)=>{
 
 router.delete("/:idVaccineProfile", (req,res)=>{
     const idVaccineProfile = req.params.idVaccineProfile;
-    const q = "DELETE FROM vaccineProfile WHERE idVaccineProfile = ?";
+    const q = "DELETE FROM vaccineprofile WHERE idVaccineProfile = ?";
     
     db.query(q,[idVaccineProfile],(err,data)=>{
         if(err) return res.json(err);

@@ -12,13 +12,14 @@ import UpdateVaccineProfile from "./UpdateVaccineProfile";
 const IndexVaccineProfiles = () => {
 
   const[vaccineProfiles,setVaccineProfiles] = useState([])
-  const data = JSON.parse(localStorage.getItem("tech"));
+  let data = JSON.parse(localStorage.getItem("tech"));
 
   useEffect(()=>{
     const fetchAllVaccineProfiles = async ()=>{
       try{
         const res = await axios.get(`http://localhost:8081/vaccineProfile/${data[0].company_idCompany}`)
         setVaccineProfiles(res.data);
+        console.log(res)
       }catch(err){
         console.log(err)
       }
@@ -39,6 +40,11 @@ const IndexVaccineProfiles = () => {
   <div>
     <div className="VaccineProfiles">
       <h1>Vaccine Profiles</h1>
+      
+      <Routes>
+        <Route index element={<AddVaccineProfile/>}/>
+      </Routes>
+      
       {vaccineProfiles.map(vaccineProfile=>(
         <div className="vaccineProfile" key={vaccineProfile.idVaccineProfile}>
 
@@ -51,9 +57,6 @@ const IndexVaccineProfiles = () => {
         </div>
       ))}
       </div>
-      <Routes>
-        <Route index element={<AddVaccineProfile/>}/>
-      </Routes>
   </div>
   );
 }

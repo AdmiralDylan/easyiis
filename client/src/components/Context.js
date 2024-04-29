@@ -10,6 +10,10 @@ export function ContextProvider({children}) {
 
     const [tech, setTech] = useState([]);
     
+    //This use of context was a failed attempt to create a means of semi-persistent data to be used for the
+    //rest of the project
+
+    //Still may use it for themeing for tech vs. admin user experiences
 
     async function getTech(id) {
         if(!tech || tech.length === 0 || tech.idTech !== id){

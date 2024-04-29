@@ -25,7 +25,9 @@ const AddUser = () => {
         administrationSite:"",
         doseAmount:0,
         checkedIn:0,
-        checkedInTime:0
+        checkedInTime:0,
+        vaccineprofile_idVaccineProfile:2,
+        vaccineprofile_company_idCompany:compId[0].company_idCompany,
     });
 
     const[isOpen, setIsOpen] = useState(false)

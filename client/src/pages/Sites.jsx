@@ -3,6 +3,7 @@ import { Link, Routes } from 'react-router-dom';
 import { Route } from "react-router-dom";
 import AddSite from "../components/siteComponents/AddSite";
 import IndexSite from '../components/siteComponents/IndexSite';
+import NavBar from '../components/features/NavBar';
 
 
 const Sites = () => { 
@@ -18,6 +19,9 @@ const Sites = () => {
 
   return (
   <div>
+    <Routes>
+          <Route index element={<NavBar/>}/>
+    </Routes>
     <h3>Sites Page</h3>
 
     <p>search site</p>

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import NavBar from '../components/features/NavBar';
+import { Route, Routes } from 'react-router-dom';
 
 const DownloadCSV = () => {
 
@@ -33,6 +35,10 @@ const DownloadCSV = () => {
 
     return (
     <div>
+        <Routes>
+          <Route index element={<NavBar/>}/>
+        </Routes>
+
         <div className="Sites-DownloadCSV">
             <h1>Sites</h1>
             {sites.map(site=>(

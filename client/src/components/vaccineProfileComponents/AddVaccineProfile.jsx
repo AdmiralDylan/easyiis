@@ -7,13 +7,14 @@ import { useState} from 'react'
 //AddVaccineProfile component
 
 const AddVaccineProfile = () => {
+    let data = JSON.parse(localStorage.getItem("tech"));
     const [vaccineProfile,setVaccineProfile] = useState({
         cvxCode:"",
         lotNumber:"",
         expirationDate:0,
         vaccineName:"",
         visDocument:"",
-        company_idCompany:0
+        company_idCompany:data[0].company_idCompany
     });
 
     const[isOpen, setIsOpen] = useState(false)
@@ -45,10 +46,9 @@ const AddVaccineProfile = () => {
                                 <h1>Add New Vaccine Profile</h1>
                                 <input type="text" placeholder='cvx' onChange={handleChange} name="cvxCode" />
                                 <input type="text" placeholder='lot number' onChange={handleChange} name="lotNumber" />
-                                <input type="date" placeholder='expiration date' onChange={handleChange} name="expiration date" />
-                                <input type="text" placeholder='vaccine name' onChange={handleChange} name="vaccine mame" />
+                                <input type="date" placeholder='expiration date' onChange={handleChange} name="expirationDate" />
+                                <input type="text" placeholder='vaccine name' onChange={handleChange} name="vaccineName" />
                                 <input type="url" placeholder='vis document' onChange={handleChange} name="visDocument" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="company_idCompany" />
                             </div>
                             <button onClick={handleClick}>Add</button>
                             <div>

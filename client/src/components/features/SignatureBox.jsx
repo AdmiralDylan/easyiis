@@ -11,7 +11,6 @@ const handleClear=()=>{
 
 const handleSave=()=>{
     sign.getTrimmedCanvas().toDataURL('image/png');
-    console.log(sign);
 }
 
   return (

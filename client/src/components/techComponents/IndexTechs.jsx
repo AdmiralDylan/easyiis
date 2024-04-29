@@ -11,11 +11,13 @@ import UpdateTech from "./UpdateTech";
 
 const IndexTechs = () => {
 
+  //loaded tech from login
   const data = JSON.parse(localStorage.getItem("tech"));
-  //console.log("data from indextechs ",data[0].company_idCompany)
   
+  //sets array of techs, basically
   const[techs,setTechs] = useState([])
 
+  //consitantly sets the array of techs, aysnc to wait for the accepted response from axios
   useEffect(()=>{
     const fetchAllTechs = async ()=>{
       try{
@@ -28,6 +30,7 @@ const IndexTechs = () => {
     fetchAllTechs()
   },[])
 
+  //delete tech by Id
   const handleDelete = async (idTech) => {
     console.log("handle delete " + idTech);
     try {

@@ -5,7 +5,6 @@ const router = express.Router();
 //Get Tech from tech id
 router.get("/:idTech",(req,res)=>{
     const value = [req.params.idTech]
-    console.log("ping")
     const q = "SELECT * FROM tech WHERE idTech =?"
     db.query(q,value,(err,data)=>{
         if(err) return res.json(err)
@@ -23,8 +22,7 @@ router.post("/",(req,res)=>{
 
     db.query(q,[username],(err,data)=>{
 
-        console.log(data[0]);
-
+        //Compare db info to request info send status and message
         if(!data[0]){
             return res.status(404).json({message: "User not found"})
         }

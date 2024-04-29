@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Confirmation = () => {
+const Confirmation = (props) => {
+  console.log("confirmation " + props.userinfo)
   return (
     <div>
         <p>
-            thanks for choosing blank at blank at blanktime
+            Your appointment is scheduled for {props.userinfo.checkedInTime} at {props.sitedata.siteName} at this address : {props.sitedata.siteAddress}
         </p>
     </div>
   )

@@ -16,7 +16,7 @@ router.get("/:vaccineSite_idVaccineSite",(req,res)=>{
 });
 
 router.post("/",(req,res)=>{
-    const q = "INSERT INTO generaluser (`dob`,`gender`,`address`,`nameFirst`,`nameLast`,`signature`,`email`,`vaccineSite_idVaccineSite`,`vaccineSite_company_idCompany`,`administrationSite`,`doseAmount`,`checkedIn`,`checkedInTime`) VALUES (?)";
+    const q = "INSERT INTO generaluser (`dob`,`gender`,`address`,`nameFirst`,`nameLast`,`signature`,`email`,`vaccineSite_idVaccineSite`,`vaccineSite_company_idCompany`,`administrationSite`,`doseAmount`,`checkedIn`,`checkedInTime`,`vaccineprofile_idVaccineProfile`,`vaccineprofile_company_idCompany`) VALUES (?)";
     const values = [
         req.body.dob,
         req.body.gender,
@@ -30,10 +30,11 @@ router.post("/",(req,res)=>{
         req.body.administrationSite,
         req.body.doseAmount,
         req.body.checkedIn,
-        req.body.checkInTime
+        req.body.checkInTime,
+        req.body.vaccineprofile_idVaccineProfile,
+        req.body.vaccineprofile_company_idCompany
     ]
 
-    console.log("user values after add", JSON.stringify(values))
 
     db.query(q,[values], (err,data)=>{
         if(err) return res.json(err);
