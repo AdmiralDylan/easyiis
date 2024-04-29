@@ -13,7 +13,6 @@ router.put("/:idGeneralUser",(req,res)=>{
         req.params['idGeneralUser']
     ]
 
-    console.log(values)
 
     db.query(q,values,(err,data)=>{
         if(err) return res.json(err);

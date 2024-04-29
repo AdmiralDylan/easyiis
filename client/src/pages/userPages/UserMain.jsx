@@ -63,9 +63,10 @@ const UserMain = () => {
     setCount(6)
   }
 
+  let [save,setSave]=useState(false);
 
 const handleSave = async e =>{
-
+setSave(true)
     try{
         await axios.post(`http://localhost:8081/addUserPost/${params.id}`,user);
     }catch(err){
@@ -116,9 +117,9 @@ const handleSave = async e =>{
 
         
         
-        <button onClick={()=>setCount(count-1)}>Back</button>
-        {count<6 &&<button onClick={()=>setCount(count+1)}>Next</button>}
-        {count>=6 && <button onClick={handleSave}>Save</button>}
+        {!save && <button onClick={()=>setCount(count-1)}>Back</button>}
+        {(count<6 && !save) && <button onClick={()=>setCount(count+1)}>Next</button>}
+        {(count>=6 && !save) && <button onClick={handleSave}>Save</button>}
     </div>
   );
 }

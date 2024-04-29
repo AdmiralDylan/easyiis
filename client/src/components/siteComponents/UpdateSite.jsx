@@ -10,15 +10,15 @@ import { useLocation } from 'react-router-dom';
 
 const UpdateSite = (props) => {
     const idSite = props.data.site.idSite;
-    const data = localStorage.getItem("tech")
+    const data = JSON.parse(localStorage.getItem("tech"))
     const [site,setSite] = useState({
-        siteName:"",
-        siteDescription:"",
-        operationDate:0,
-        operationTimeStart:"",
-        operationTimeEnd:"",
-        timeInterval:15,
-        siteAddress:"",
+        siteName:null,
+        siteDescription:null,
+        operationDate:null,
+        operationTimeStart:null,
+        operationTimeEnd:null,
+        timeInterval:null,
+        siteAddress:null,
         company_idCompany:data[0].company_idCompany
     });
         

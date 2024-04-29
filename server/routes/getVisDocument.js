@@ -2,7 +2,7 @@ import express from "express";
 import db from "../db.js";
 const router = express.Router();
 
-router.get("/vis/:id",(req,res)=>{
+router.get("/:id",(req,res)=>{
     const id = req.params.id;
     const q = "SELECT visDocument FROM vaccineprofile where idVaccineProfile = ?"
 

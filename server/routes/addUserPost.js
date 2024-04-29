@@ -44,7 +44,6 @@ router.post("/:vaccineSite_idVaccineSite",(req,res)=>{
         const q = "INSERT INTO generaluser (`dob`,`gender`,`address`,`nameFirst`,`nameLast`,`signature`,`email`,`vaccineSite_idVaccineSite`,`vaccineSite_company_idCompany`,`administrationSite`,`doseAmount`,`checkedIn`,`checkedInTime`,`vaccineprofile_idVaccineProfile`,`vaccineprofile_company_idCompany`) VALUES (?)";
 
     db.query(q,[values],(err,data)=>{
-        console.log(err,data)
         if(err) return res.json(err)
         return res.json(data)
     });

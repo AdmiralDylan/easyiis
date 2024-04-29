@@ -12,19 +12,17 @@ const CheckIn = (props) => {
         checkedInTime:0
     });
 
-        //To implement populating with current time
-    //const currtime = new Date()
-    //const time = currtime.getHours().toString() + ":" + currtime.getMinutes().toString();
-    //console.log("this is the current time ", time)
+
+    
     
     const handleChange = (e) =>{
         if(e.target.name === 'checkedIn'){
             setUser((prev) => ({...prev,[e.target.name]:e.target.checked}));
-            console.log(user.checkedIn)
         }else{
             setUser((prev) => ({...prev,[e.target.name]: e.target.value}));
         }
     };
+
 
     const handleClick = async e =>{
         
@@ -39,10 +37,12 @@ const CheckIn = (props) => {
         }
     }
 
+    console.log(props);
+
   return (
     <div className='checkInPopout'>
             <Popup trigger=
-                {<button>check-in</button>}
+                {<button style={{backgroundColor:props.style}}>check-in</button>}
                 modal opened nested>{
                     close => (
                         <div className='modal'>
@@ -50,6 +50,7 @@ const CheckIn = (props) => {
                                 <h1>check-in</h1>
                                 <input type="time" onChange={handleChange} name="checkedInTime" />
                                 <input type="checkbox" onChange={handleChange} name="checkedIn" />
+            
                             </div>
                             <button onClick={handleClick}>Add</button>
                             <div>

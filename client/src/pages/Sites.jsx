@@ -22,6 +22,7 @@ const Sites = () => {
     <Routes>
           <Route index element={<NavBar/>}/>
     </Routes>
+    {isAllowed && <Link to="/landing">back to landing</Link>}
     <h3>Sites Page</h3>
 
     <p>search site</p>

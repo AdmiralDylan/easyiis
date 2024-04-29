@@ -9,7 +9,6 @@ router.get("/:siteId",(req,res)=>{
     const q = "SELECT company_idCompany FROM site WHERE idSite = ?"
 
     db.query(q,siteId,(err,company)=>{
-        console.log(company)
         if(err) return res.json(err)
             const q = "SELECT * FROM vaccineprofile WHERE company_idCompany=?"
             const value = company[0].company_idCompany

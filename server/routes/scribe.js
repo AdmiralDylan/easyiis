@@ -5,14 +5,14 @@ const router = express.Router();
 //Update {values} on idGeneralUser
 
 router.put("/:idGeneralUser",(req,res)=>{
-    const q = "UPDATE generaluser SET `administrationSite`=?,`doseAmount`=? WHERE `idGeneralUser` = ?"
+    const q = "UPDATE generaluser SET `administrationSite`=?,`doseAmount`=?,`vaccineprofile_idVaccineProfile`=? WHERE `idGeneralUser` = ?"
     const values=[
         req.body.administrationSite,
         req.body.doseAmount,
+        req.body.vaccineprofile_idVaccineProfile,
         req.params['idGeneralUser']
     ]
 
-    console.log(values)
 
     db.query(q,values,(err,data)=>{
         if(err) return res.json(err);

@@ -35,7 +35,6 @@ router.post("/",(req,res)=>{
 });
 
 router.put("/:idSite",(req,res)=>{
-    console.log('query',req.params['idSite']);
     const q = "UPDATE site SET `siteName` =?,`siteDescription`=?,`operationDate`=?,`operationTimeStart`=?,`operationTimeEnd`=?,`timeInterval`=?,`siteAddress`=?,`company_idCompany`=? WHERE idSite = ?";
     const values = [
         req.body.siteName,
@@ -48,8 +47,9 @@ router.put("/:idSite",(req,res)=>{
         req.body.company_idCompany,
         req.params['idSite'],
     ]
-    //console.log("values into SQL",values);
+    console.log("values into SQL",values);
     db.query(q,values, (err,data)=>{
+        console.log(err,data)
         if(err) return res.json(err);
         return res.json("site Update");
     });
@@ -57,9 +57,10 @@ router.put("/:idSite",(req,res)=>{
 
 router.delete("/:idSite", (req,res)=>{
     const idSite = req.params.idSite;
+    console.log("delete ",idSite)
     const q = "DELETE FROM site WHERE idSite = ?";
     
-    db.query(q,[idSite],(err,data)=>{
+    db.query(q,idSite,(err,data)=>{
         if(err) return res.json(err);
         return res.json(data);
     })

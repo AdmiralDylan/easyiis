@@ -37,6 +37,9 @@ const IndexUsers = () => {
     }
   }
 
+
+
+
   return (
   <div>
     <div className="Users">
@@ -50,12 +53,24 @@ const IndexUsers = () => {
             data={{user}}/>}/>
           </Routes>
           <Routes>
-            <Route index element={<CheckIn
+            {user.checkedIn ===1 &&
+            <Route index element={<CheckIn style={'green'}
             data={{user}}/>}/>
+            }
+            {user.checkedIn ===0 &&
+            <Route index element={<CheckIn style={'grey'}
+            data={{user}}/>}/>
+            }
           </Routes>
           <Routes>
-            <Route index element={<Scribe
+            {user.doseAmount>0 &&
+             <Route index element={<Scribe style={'green'}
             data={{user}}/>}/>
+            }
+            {user.doseAmount<=0 &&
+             <Route index element={<Scribe style={'grey'}
+            data={{user}}/>}/>
+            }
           </Routes>
         </div>
       ))}

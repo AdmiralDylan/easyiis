@@ -6,9 +6,13 @@ const VISInformation = (props) => {
   const[vaccineProfiles,setVaccineProfiles] = useState([])
 
     async function fetchVaccineProfile(){
-      const res = await axios.get(`http://localhost:8081/getvis/${props.userinfo.vaccineprofile_idVaccineProfile}`)
-      setVaccineProfiles(res.data[0]);
-      console.log("vaccine profile ", res.data[0])
+      console.log(props.userinfo.vaccineprofile_idVaccineProfile)
+      try{
+        const res = await axios.get(`http://localhost:8081/getvis/${props.userinfo.vaccineprofile_idVaccineProfile}`)
+        setVaccineProfiles(res.data[0]);
+        } catch(err){
+        console.log("vaccine profile ", err)
+      }
     }
 
     if(vaccineProfiles.length===0){

@@ -43,7 +43,6 @@ router.post("/",(req,res)=>{
 });
 
 router.put("/:idGeneralUser",(req,res)=>{
-    console.log('query',req.params['idGeneralUser']);
     const q = "UPDATE generaluser SET `dob` =?,`gender`=?,`address`=?,`nameFirst`=?,`nameLast`=?,`signature`=?,`email`=? WHERE idGeneralUser = ?";
     const values = [
         req.body.dob,
@@ -55,7 +54,6 @@ router.put("/:idGeneralUser",(req,res)=>{
         req.body.email,
         req.params['idGeneralUser']
     ]
-    console.log("values into SQL",values);
     db.query(q,values, (err,data)=>{
         if(err) return res.json(err);
         return res.json("User Update");

@@ -8,10 +8,27 @@ router.get('/:vaccineSite_idVaccineSite',(req,res)=>{
     db.query('DESCRIBE generaluser',(err,rows)=>{
         if(err) return err;
 
-        const headers = rows.map(row => ({ id: row.Field, title: row.Field }));
+        //rows.map(row => ({ id: row.Field, title: row.Field }));
+        let headers = null;
+
+        headers = [
+            {id:'nameFirst',title:'NAMEFIRST'},
+            {id:'nameLast',title:'NAMELAST'},
+            {id:'dob',tite:'fieldname'},
+            {id:'gender',title:'GENDER'},
+            {id:'address', title:'ADDRESS'},
+            {id:'administrationSite',title:'ADMINISTRATIONSITE'},
+            {id:'doseAmount',title:'DOSEAMOUNT'},
+            {id:'cvxCode',title:'CVXCODE'},
+            {id:'lotNumber',title:'LOTNUMBER'},
+            {id:'expirationDate',title:'EXPIRATIONDATE'}
+        ]
         const value = [req.params.vaccineSite_idVaccineSite]
-        const q = "SELECT * FROM generaluser WHERE vaccineSite_idVaccineSite=?"
-        //Now get the data from general user
+        const q = "SELECT generaluser.nameFirst,generaluser.nameLast,generaluser.dob,generaluser.gender,generaluser.address,generaluser.administrationSite,generaluser.doseAmount,vaccineprofile.cvxCode,vaccineprofile.lotNumber,vaccineprofile.expirationDate"
+        + " FROM generaluser"
+        + " INNER JOIN vaccineprofile ON generaluser.vaccineprofile_idVaccineProfile=vaccineprofile.idVaccineProfile"
+        + " WHERE generaluser.checkedIn=1 AND generaluser.vaccineSite_idVaccineSite=?";
+        //Now get the data from general user joined through vaccine profile
         db.query(q,value,(err,data)=>{
             
             

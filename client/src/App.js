@@ -22,6 +22,7 @@ function App() {
             <Route path="/landing" element={<AdminLandingPage/>}/>
             <Route path="/tech" element={<Techs/>}/>
             <Route path="/vaccineProfiles" element={<VaccineProfilePage/>}/>
+            <Route path="/downloadCSV" element={<DownloadCSV/>}/>
 
             <Route path="/userlanding/:id" element={<UserMain/>}/>
 
