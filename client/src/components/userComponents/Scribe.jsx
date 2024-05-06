@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 
 
 const Scribe = (props) => {
+    
     const idGeneralUser = props.data.user.idGeneralUser;
     //only changing these two values and vaccineprofileid
     const [user,setUser] = useState({
