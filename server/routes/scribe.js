@@ -15,6 +15,7 @@ router.put("/:idGeneralUser",(req,res)=>{
 
 
     db.query(q,values,(err,data)=>{
+        console.log("post scribe ",err,data)
         if(err) return res.json(err);
         return res.json("site Update");
     });

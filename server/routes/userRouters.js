@@ -37,6 +37,7 @@ router.post("/",(req,res)=>{
 
 
     db.query(q,[values], (err,data)=>{
+        console.log(err,data)
         if(err) return res.json(err);
         return res.json(data);
     });
