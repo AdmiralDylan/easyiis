@@ -45,8 +45,8 @@ const IndexUsers = () => {
     <div className="Users">
       <h1>Users</h1>
       {users.map(user=>(
-        <div className="user" key={user.idGeneralUser}>
-          <h3>{user.nameFirst + " " + user.nameLast + " " + user.idGeneralUser}</h3>
+        <div style={{display:'flex'}}className="user" key={user.idGeneralUser}>
+          <h3>{user.nameFirst + " " + user.nameLast + " id: " + user.idGeneralUser}</h3>
           <button className="deleteUser" onClick={()=>handleDelete(user.idGeneralUser)}>delete</button>
           <Routes>
             <Route index element={<UpdateUser

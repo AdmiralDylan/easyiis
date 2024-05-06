@@ -8,6 +8,7 @@ import SitePage from "./pages/SitePage";
 import ContextProvider from "./components/Context";
 import DownloadCSV from "./pages/DownloadCSV";
 import UserMain from "./pages/userPages/UserMain";
+import './App.css';
 
 function App() {
 

@@ -57,10 +57,10 @@ const IndexSite = () => {
 
   return (
   <div>
-    <div className="Sites">
-      <h1>Sites</h1>
+    <h1>Sites</h1>
+    <div className="Sites" style={{display:'flex'}}>
       {sites.map(site=>(
-        <div className="site" key={site.idSite}>
+        <div style={{padding:'1rem',margin:'auto',border:'1px solid black'}} className="site" key={site.idSite}>
           <button onClick={()=>handleNavigate(site.idSite)}><h3>{site.siteName}</h3></button>
           <p>{site.operationDate}</p>
           {isAllowed && <button className="deleteSite" onClick={()=>handleDelete(site.idSite)}>delete</button>}

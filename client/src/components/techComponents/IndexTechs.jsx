@@ -46,7 +46,7 @@ const IndexTechs = () => {
     <div className="Techs">
       <h1>Techs</h1>
       {techs.map(tech=>(
-        <div className="tech" key={tech.idTech}>
+        <div style={{display:'flex'}} className="tech" key={tech.idTech}>
           <h3>{tech.nameFirst}</h3>
           <button className="deleteTech" onClick={()=>handleDelete(tech.idTech)}>delete</button>
           <Routes>

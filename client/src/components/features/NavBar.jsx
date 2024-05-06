@@ -31,14 +31,33 @@ const NavBar = () => {
     navigate('/')
   }
 
+  //admin or tech context
+  let isAdmin = data[0].isAdmin;
+  let isAllowed = false;
+
+  if(isAdmin === 1){
+    isAllowed = true;
+  }
+
+
+  //back to home
+  function handleCompany(){
+    if(isAllowed){
+      navigate('/landing')
+    } else if(!isAllowed){
+      navigate('/sites')
+    }
+
+  }
+
 
   return (
-    <div>
-        <h3>Welcome {data[0].nameFirst}</h3>
+    <div style={{display:'flex', padding:'2rem'}}>
+        <h3 style={{paddingLeft:'5%',paddingRight:'5%'}}>Welcome {data[0].nameFirst}</h3>
 
-        {nameCompany!=0 && <h3>{nameCompany.nameCompany}</h3>}
+        {nameCompany!=0 && <h3 style={{paddingLeft:'5%',paddingRight:'5%'}}><button onClick={()=>handleCompany()}>{nameCompany.nameCompany}</button></h3>}
 
-        <button className="handleLogout" onClick={()=>handleLogout()}>Logout</button>
+        <button style={{paddingLeft:'5%',paddingRight:'5%'}} className="handleLogout" onClick={()=>handleLogout()}>Logout</button>
     </div>
   )
 }

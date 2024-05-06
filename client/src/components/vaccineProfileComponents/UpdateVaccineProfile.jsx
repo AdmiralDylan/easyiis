@@ -9,13 +9,16 @@ import { useState} from 'react'
 
 const UpdateVaccineProfile = (props) => {
     const idVaccineProfile = props.data.vaccineProfile.idVaccineProfile;
+
+    console.log(props.data.vaccineProfile.expirationDate)
+    
     const [vaccineProfile,setVaccineProfile] = useState({
-        cvxCode:"",
-        lotNumber:"",
-        expirationDate:0,
-        vaccineName:"",
-        visDocument:"",
-        company_idCompany:0
+        cvxCode:props.data.vaccineProfile.cvxCode,
+        lotNumber:props.data.vaccineProfile.lotNumber,
+        expirationDate:props.data.vaccineProfile.expirationDate,
+        vaccineName:props.data.vaccineProfile.vaccineName,
+        visDocument:props.data.vaccineProfile.visDocument,
+        company_idCompany:props.data.vaccineProfile.company_idCompany
     });
 
     const handleChange = (e) =>{
@@ -42,12 +45,11 @@ const UpdateVaccineProfile = (props) => {
                         <div className='modal'>
                             <div className='form'>
                                 <h1>Update Vaccine Profile</h1>
-                                <input type="text" placeholder='cvx' onChange={handleChange} name="cvxCode" />
-                                <input type="text" placeholder='lot number' onChange={handleChange} name="lotNumber" />
-                                <input type="date" placeholder='expiration date' onChange={handleChange} name="expirationDate" />
-                                <input type="text" placeholder='vaccine name' onChange={handleChange} name="vaccineName" />
-                                <input type="url" placeholder='vis document' onChange={handleChange} name="visDocument" />
-                                <input type="number" placeholder='1' onChange={handleChange} name="company_idCompany" />
+                                <input type="text" value={vaccineProfile.cvxCode} placeholder='cvx' onChange={handleChange} name="cvxCode" />
+                                <input type="text" value={vaccineProfile.lotNumber} placeholder='lot number' onChange={handleChange} name="lotNumber" />
+                                <input type="date" value={vaccineProfile.expirationDate} placeholder='expiration date' onChange={handleChange} name="expirationDate" />
+                                <input type="text" value={vaccineProfile.vaccineName} placeholder='vaccine name' onChange={handleChange} name="vaccineName" />
+                                <input type="url" value={vaccineProfile.visDocument} placeholder='vis document' onChange={handleChange} name="visDocument" />
                             </div>
                             <button onClick={handleClick}>Update</button>
                             <div>

@@ -14,7 +14,7 @@ router.get('/:vaccineSite_idVaccineSite',(req,res)=>{
         headers = [
             {id:'nameFirst',title:'NAMEFIRST'},
             {id:'nameLast',title:'NAMELAST'},
-            {id:'dob',tite:'fieldname'},
+            {id:'dob',tite:'DOB'},
             {id:'gender',title:'GENDER'},
             {id:'address', title:'ADDRESS'},
             {id:'administrationSite',title:'ADMINISTRATIONSITE'},

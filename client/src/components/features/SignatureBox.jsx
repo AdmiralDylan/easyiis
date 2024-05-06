@@ -15,7 +15,7 @@ const handleSave=()=>{
 
   return (
     <div>
-        <div style={{width:500,height:200}}>
+        <div style={{width:500,height:200,border:'1px solid black',margin:'auto'}}>
             <SignatureCanvas
             canvasProps={{width:500,height:200,className:'sigCanvas'}}
                 ref={data=>setSign(data)}

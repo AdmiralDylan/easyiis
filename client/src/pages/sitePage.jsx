@@ -9,6 +9,8 @@ import axios from 'axios';
 
 
 const SitePage = () => {
+  //load logged in tech
+  let data = JSON.parse(localStorage.getItem("tech"));
 
 
   let params = useParams();
@@ -23,6 +25,14 @@ const SitePage = () => {
     }catch(err){
       console.log(err)
     }
+  }
+
+  //admin or tech context
+  let isAdmin = data[0].isAdmin;
+  let isAllowed = false;
+
+  if(isAdmin === 1){
+    isAllowed = true;
   }
 
   if(site.length===0){
@@ -41,6 +51,9 @@ const SitePage = () => {
       <p>Site date</p>
       {site&&<p>{site.operationDate}</p>}
       <Link to ='/sites'>back to sites</Link>
+
+      {isAllowed && <Link to="/landing">back to landing</Link>}
+
 
       <div>
         <p>search users</p>
