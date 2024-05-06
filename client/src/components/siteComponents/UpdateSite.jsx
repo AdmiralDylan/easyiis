@@ -9,16 +9,20 @@ import { useLocation } from 'react-router-dom';
 //Update site component 
 
 const UpdateSite = (props) => {
+    //You will see this throughout other `name`Components
+    //props is an argument passed through the indexSite component
+    //passed in is the respective database object, this one is a site
+    //figured I'd use this method rather than frequently calling gets from the server.
     const idSite = props.data.site.idSite;
     const data = JSON.parse(localStorage.getItem("tech"))
     const [site,setSite] = useState({
-        siteName:null,
-        siteDescription:null,
-        operationDate:null,
-        operationTimeStart:null,
-        operationTimeEnd:null,
-        timeInterval:null,
-        siteAddress:null,
+        siteName:props.data.site.siteName,
+        siteDescription:props.data.site.siteDescription,
+        operationDate:props.data.site.operationDate,
+        operationTimeStart:props.data.site.operationTimeStart,
+        operationTimeEnd:props.data.site.operationTimeEnd,
+        timeInterval:props.data.site.timeInterval,
+        siteAddress:props.data.site.siteAddress,
         company_idCompany:data[0].company_idCompany
     });
         
@@ -46,13 +50,13 @@ const UpdateSite = (props) => {
                         <div className='modal'>
                             <div className='form'>
                                 <h1>Update Site</h1>
-                                <input type="text" placeholder='site name' onChange={handleChange} name="siteName" />
-                                <input type="text" placeholder='site description' onChange={handleChange} name="siteDescription" />
-                                <input type="date" placeholder='site date' onChange={handleChange} name="operationDate" />
-                                <input type="time" placeholder='site start time' onChange={handleChange} name="operationTimeStart" />
-                                <input type="time" placeholder='site end time' onChange={handleChange} name="operationTimeEnd" />
-                                <input type="number" placeholder='time interval' onChange={handleChange} name="timeInterval" />
-                                <input type="text" placeholder='site address' onChange={handleChange} name="siteAddress" />
+                                <input type="text" value={site.siteName} onChange={handleChange} name="siteName" />
+                                <input type="text" value={site.siteDescription} onChange={handleChange} name="siteDescription" />
+                                <input type="date" value={site.operationDate} onChange={handleChange} name="operationDate" />
+                                <input type="time" value={site.operationTimeStart} onChange={handleChange} name="operationTimeStart" />
+                                <input type="time" value={site.operationTimeEnd} onChange={handleChange} name="operationTimeEnd" />
+                                <input type="number" value={site.timeInterval} onChange={handleChange} name="timeInterval" />
+                                <input type="text" value={site.siteAddress} onChange={handleChange} name="siteAddress" />
                             </div>
                             <button onClick={handleClick}>Update</button>
                             <div>

@@ -55,7 +55,6 @@ const UpdateUser = (props) => {
                                 <input type="text" value={user.address} placeholder='address' onChange={handleChange} name="address" />
                                 <input type="text" value={user.nameFirst} placeholder='first name' onChange={handleChange} name="nameFirst" />
                                 <input type="text" value={user.nameLast} placeholder='last name' onChange={handleChange} name="nameLast" />
-                                <input type="text" placeholder='signature' onChange={handleChange} name="signature" />
                                 <input type="text" value={user.email} placeholder='email' onChange={handleChange} name="email" />
 
                                 <Routes>

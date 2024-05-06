@@ -15,13 +15,13 @@ const UpdateTech = (props) => {
     let data = JSON.parse(localStorage.getItem("tech"))
 
     const [tech,setTech] = useState({
-        password:"",
-        username:"",
-        isAdmin:"",
-        nameFirst:"",
-        nameLast:"",
-        signature:"",
-        email:"",
+        password:props.data.tech.password,
+        username:props.data.tech.username,
+        isAdmin:props.data.tech.isAdmin,
+        nameFirst:props.data.tech.nameFirst,
+        nameLast:props.data.tech.nameLast,
+        signature:props.data.tech.signature,
+        email:props.data.tech.email,
         company_idCompany:data[0].company_idCompany
     });
 
@@ -49,12 +49,12 @@ const UpdateTech = (props) => {
                         <div className='modal'>
                             <div className='form'>
                                 <h1>Update Tech</h1>
-                                <input type="text" placeholder='password' onChange={handleChange} name="password" />
-                                <input type="text" placeholder='username' onChange={handleChange} name="username" />
-                                <input type="boolean" placeholder='is admin?' onChange={handleChange} name="isAdmin" />
-                                <input type="text" placeholder='first name' onChange={handleChange} name="nameFirst" />
-                                <input type="text" placeholder='last name' onChange={handleChange} name="nameLast" />
-                                <input type="text" placeholder='email' onChange={handleChange} name="email" />
+                                <input type="text" value={tech.password} onChange={handleChange} name="password" />
+                                <input type="text" value={tech.username} onChange={handleChange} name="username" />
+                                <input type="boolean" value={tech.isAdmin} onChange={handleChange} name="isAdmin" />
+                                <input type="text" value={tech.nameFirst} onChange={handleChange} name="nameFirst" />
+                                <input type="text" value={tech.nameLast} onChange={handleChange} name="nameLast" />
+                                <input type="text" value={tech.email} onChange={handleChange} name="email" />
 
                                 <Routes>
                                    <Route index element={<SignatureBox/>} /> 

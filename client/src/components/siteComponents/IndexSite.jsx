@@ -5,8 +5,7 @@ import axios from 'axios'
 import { Link, Routes, useNavigate } from 'react-router-dom';
 import { Route } from "react-router-dom";
 import UpdateSite from "./UpdateSite";
-import SignatureBox from '../features/SignatureBox';
-import Context from '../Context';
+
 
 
 const IndexSite = () => {
